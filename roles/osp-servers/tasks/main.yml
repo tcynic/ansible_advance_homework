@@ -41,14 +41,6 @@
   register: result
   tags:
     - test.servers
-
-- name: Print records  
-  debug:
-    var: item.name
-  with_items: 
-  - "{{ openstack_servers}}"
-  tags:
-    - test.servers
   
 - name: Wait for server to be available
   wait_for:
@@ -59,5 +51,7 @@
   delegate_to: "{{ inventory_hostname }}"
   with_items: 
     - "{{ result.ansible_facts.openstack_servers }}"
+    loop_control:
+      label: "{{ item.key }}"
   tags:
     - test.servers
