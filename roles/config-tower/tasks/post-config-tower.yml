@@ -15,7 +15,7 @@
 
 - name: Fetch private key
   slurp:
-    src: "/root/.ssh/openstack.pem"
+    src: "/root/.ssh/test_id_rsa"
   register: openstack_key
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
