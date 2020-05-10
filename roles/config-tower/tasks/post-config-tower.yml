@@ -13,17 +13,21 @@
     state: present
     tower_config_file: "/tmp/tower_cli.cfg"
 
-
+- name: Fetch private key
+  slurp:
+    src: "/root/.ssh/openstack.pem"
+  register: openstack_key
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
     name: Connect_to_workstation
     organization: Default
+    become_method: sudo
     state: present
     kind: ssh
     #tower_host: tower1.{{tower_GUID}}.example.opentlc.com
     #tower_username: admin
     #tower_password: r3dh4t1!
-    ssh_key_data: "/root/.ssh/openstack.pem"
+    ssh_key_data: "{{ openstack_key['content'] | b64decode }}"
     username: cloud-user
     tower_config_file: "/tmp/tower_cli.cfg"
 
