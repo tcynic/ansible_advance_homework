@@ -17,7 +17,6 @@
   tower_credential:
     name: Connect_to_workstation
     organization: Default
-    become_method: sudo
     state: present
     kind: ssh
     tower_host: workstation-17a8.rhpds.opentlc.com 
@@ -26,6 +25,7 @@
     ssh_key_data: /root/.ssh/test_is_rsa
     username: cloud-user
     tower_config_file: "/tmp/tower_cli.cfg"
+  become: yes
 
 - name: Create Inventory
   command: |
