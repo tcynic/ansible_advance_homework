@@ -12,6 +12,12 @@
     validate_certs: no
     state: present
     tower_config_file: "/tmp/tower_cli.cfg"
+    
+- name: Check Key File Format
+  lineinfile:
+    path: /root/.ssh/openstack.pem
+    state: absent
+    regexp: '^#' 
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
