@@ -13,10 +13,6 @@
     state: present
     tower_config_file: "/tmp/tower_cli.cfg"
 
-- name: Fetch private key
-  slurp:
-    src: "/root/.ssh/test_id_rsa"
-  register: openstack_key
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
     name: Connect_to_workstation
@@ -27,7 +23,7 @@
     tower_host: workstation-17a8.rhpds.opentlc.com 
     #tower_username: admin
     #tower_password: r3dh4t1!
-    ssh_key_data: "{{ openstack_key['content'] | b64decode }}"
+    ssh_key_data: /root/.ssh/test_is_rsa
     username: cloud-user
     tower_config_file: "/tmp/tower_cli.cfg"
 
