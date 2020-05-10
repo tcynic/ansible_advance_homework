@@ -52,6 +52,6 @@
   with_items: 
     - "{{ result.ansible_facts.openstack_servers }}"
   loop_control:
-    label: "{{ item.key }}"
+    label: "{{ result.ansible_facts.openstack_servers }}"
   tags:
     - test.servers
