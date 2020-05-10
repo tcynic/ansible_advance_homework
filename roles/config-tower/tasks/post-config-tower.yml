@@ -24,7 +24,7 @@
     become_method: sudo
     state: present
     kind: ssh
-    #tower_host: tower1.{{tower_GUID}}.example.opentlc.com
+    tower_host: workstation-17a8.rhpds.opentlc.com 
     #tower_username: admin
     #tower_password: r3dh4t1!
     ssh_key_data: "{{ openstack_key['content'] | b64decode }}"
