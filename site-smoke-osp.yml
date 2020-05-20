@@ -11,8 +11,6 @@
     register: openstack_info
     tags:
       - osp.smoke
-  - debug:
-      msg: "{{ openstack_info.openstack.public_v4 }}"
       
   - name: Curl website
     uri:
