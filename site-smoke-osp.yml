@@ -12,7 +12,7 @@
     tags:
       - osp.smoke
   - debug:
-      msg: "{{ openstack_info.openstack_servers.interface_ip }}"
+      msg: "{{ openstack_info.openstack_servers }}"
       
   - name: Curl website
     uri:
