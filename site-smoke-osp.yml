@@ -5,13 +5,14 @@
     os_server_info:
      cloud: ospcloud
      server: 'frontend'
+     interface: public
      filters:
       vm_state: active
     register: openstack_info
     tags:
       - osp.smoke
   - debug:
-      msg: "{{ openstack_info.openstack_servers[8] }}"
+      msg: "{{ openstack_info.openstack_servers }}"
       
   - name: Curl website
     uri:
