@@ -2,12 +2,16 @@
   gather_facts: false
   tasks:
   - name: OpenStack servers
-    os_server_facts:
-      cloud: ospcloud
-      server: 'frontend'
+    os_server_info:
+     cloud: ospcloud
+     server: 'frontend'
+     filters:
+      vm_state: active
     register: openstack_info
     tags:
-    - osp.smoke
+      - osp.smoke
+  - debug:
+      msg: "{{ openstack_info.openstack_servers }}"
     
   - name: Curl website
     uri:
