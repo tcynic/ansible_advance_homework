@@ -10,15 +10,13 @@
     register: openstack_info
     tags:
       - osp.smoke
-  - debug:
-      msg: "{{ openstack_info.openstack_servers }}"
     
   - name: Curl website
     uri:
       url: "http://{{item.public_v4}}"
       return_content: yes
     with_items:
-    - "{{ openstack_info.ansible_facts.openstack_servers }}"
+    - "{{ openstack_info.openstack_servers }}"
     register: webpage
     tags:
       - osp.smoke
