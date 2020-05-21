@@ -4,13 +4,12 @@
   tasks:
   - name: Install required packages 
     yum: 
-     name: "{{item}}"
-     state: latest 
-    loop: 
+     name: 
       - python 
       - python-pip 
       - python-devel 
       - gcc
+     state: latest 
   - name: Install tower-cli
     pip:
      name: ansible-tower-cli
