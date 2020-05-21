@@ -2,35 +2,21 @@
 # Use tower module or tower-cli to create Ansible Tower project. Name of the project is specifed in ./vars/main.yml
   tower_project:
     name: "{{ proj_name }}"
-    description: "Homework Assignment"
     organization: "{{ org_name }}"
     scm_type: git
     scm_url: "{{ scm_url }}"
-    scm_update_on_launch: True
-    scm_update_cache_timeout: 60
-    scm_branch: "{{ scm_branch }}"
-    validate_certs: no
-    state: present
-    tower_config_file: "/tmp/tower_cli.cfg"
-    
-- name: Check Key File Format
-  lineinfile:
-    path: /root/.ssh/openstack.pem
-    state: absent
-    regexp: '^#' 
 
 - name: Machine Credentail to connect to workstation using openstack.pub
   tower_credential:
-    name: Connect_to_workstation
-    organization: Default
+    name: "{{ ssh_cred_name }}"
+    organization: "{{ org_name }}"
     state: present
     kind: ssh
     tower_host: tower1.{{tower_GUID}}.example.opentlc.com
-    tower_username: admin
-    tower_password: r3dh4t1!
-    ssh_key_data: /root/.ssh/openstack.pem
-    username: cloud-user
-    tower_config_file: "/tmp/tower_cli.cfg"
+    tower_username: "{{ user_name }}"
+    tower_password: "{{ password }}"
+    ssh_key_data: "{{ user_cred_path }}"
+    username: "{{ user_cred_name }}"
 
 - name: Create Inventory
   command: |

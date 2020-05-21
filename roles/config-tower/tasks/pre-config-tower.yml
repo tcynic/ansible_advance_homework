@@ -12,11 +12,7 @@
   copy:
     src: "{{path_to_opentlc_key}}"
     dest: /root/secret.pem
-    
-- name: Create Tower_Config_file
-  template:
-    src: tower_cli.j2
-    dest: /tmp/tower_cli.cfg
+
 
 - name: Copy inventory vars
   copy:
